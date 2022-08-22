@@ -1,6 +1,6 @@
 on:
-  repository_dispatch
-
+  repository_dispatch:
+    types: [master_push]
 
 jobs:
   build-and-publish-wasm-windows-electron:
