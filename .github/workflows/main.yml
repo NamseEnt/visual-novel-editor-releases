@@ -1,0 +1,9 @@
+# on:
+#   repository_dispatch
+
+
+jobs:
+  build-and-publish-wasm-windows-electron:
+    runs-on: windows-latest
+    steps:
+        run: git clone https://github.com/namseent/namseent
