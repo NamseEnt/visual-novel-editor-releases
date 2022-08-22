@@ -4,6 +4,33 @@ on:
 
 jobs:
   build-and-publish-wasm-windows-electron:
+    defaults:
+      run:
+          shell: wsl-bash_Ubuntu-20.04 {0}
     runs-on: windows-latest
     steps:
-      - run: git clone https://github.com/namseent/namseent
+      - name: wsl v1 setting
+        uses: Vampire/setup-wsl@v1
+      
+      - name: git clone nasmeent
+        run: git clone --depth 1 https://github.com/namseent/namseent
+      
+      - name: install rust
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+          rustup target add wasm32-unknown-unknown
+          rustup show
+      
+      - name: install namui-cli
+        run: |
+          pwd
+          bash ./namseent/namui-cli/scripts/install.sh
+      
+      - name: build luda-editor-client
+        run: |
+          pwd
+          cd ./namseent/luda-client/client
+          namui build target wasm-windows-electron
+          ls target/namui/target
+          ls target/namui/target/wasm-windows-electron
+      
