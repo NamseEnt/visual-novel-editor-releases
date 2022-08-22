@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: wsl v1 setting
         uses: Vampire/setup-wsl@v1
+        with:
+          distribution: Ubuntu-20.04
       
       - name: git clone nasmeent
         run: git clone --depth 1 https://github.com/namseent/namseent
